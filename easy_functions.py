@@ -32,4 +32,16 @@ class Solution:
         return k
     # print(removeDuplicates([1,1,2]))
 
-    
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        
+        for i, num in enumerate(nums):
+            complement = target - num
+            
+            if complement in seen:
+                return [seen[complement], i]
+            
+            seen[num] = i
+            
+        return []
+    # print(twoSum([2,7,11,15], 9))

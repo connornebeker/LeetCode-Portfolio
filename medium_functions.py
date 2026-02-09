@@ -59,17 +59,17 @@ class Solution:
 
     def maxArea(self, height: List[int]) -> int:
         water = 0
-        curr = 0
+        left = 0
+        right = len(height) - 1
 
-        for i in range(len(height)):
-            for j in range(len(height)):
-                if height[j] > height[i]:
-                    max_height = height[i]
-                else:
-                    max_height = height[j]
-                curr = (j - i)*(max_height)
-                if curr > water:
-                    water = curr
+        while left < right:
+            width = right - left
+            current_height = min(height[left], height[right])
+            water = max(water, width * current_height)
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
         
         return water
     # print(maxArea([1,8,6,2,5,4,8,3,7]))
